@@ -1,0 +1,65 @@
+version: "3.7"
+
+services:
+
+    # OBS: optei por realizar o teste em ambiente virtual com containers docker
+    
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www
+        volumes:
+          - ./:/var/www
+        depends_on:
+            - redis
+        networks:
+            - migration_challenge
+
+    # MySql database
+    db:
+        image: mysql:5.7.22
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-migration_challenge}
+            MYSQL_ROOT_PASSWORD: ${DB_MYSQL_PASSWORD:-root}
+            MYSQL_PASSWORD: ${DB_MYSQL_PASSWORD:-userpass}
+            MYSQL_USER: ${DB_MYSQL_USERNAME:-username}
+        volumes:
+            - ./.docker/mysql/dbdata:/var/lib/mysql
+        ports:
+            - "4499:3306"
+        networks:
+            - migration_challenge
+
+    # Temporary database
+    mariadb:
+        image: mariadb:latest
+        restart: unless-stopped
+        environment:
+            MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+            MARIADB_DATABASE: ${MARIADB_DATABASE}
+            MARIADB_USER: ${MARIADB_USER}
+            MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+
+        ports:
+            - "4050:3306"
+        volumes:
+          - mariadb_data:/var/lib/mysql
+        networks:
+            - migration_challenge
+
+    # redis
+    redis:
+        image: redis:latest
+        networks:
+            - migration_challenge
+
+networks:
+    migration_challenge:
+        driver: bridge
+
+volumes:
+  mariadb_data:
+    driver: local
