@@ -123,6 +123,7 @@ function pacientesMigration($pacientesCsvData, $database) {
       ?
     )";
 
+    //SQL para verificar se há pacientes repetidos pelo CPF
     $sqlCheck = "SELECT COUNT(*) FROM pacientes WHERE cpf LIKE ?";
     $stmtCheck = mysqli_prepare($database, $sqlCheck);
 
