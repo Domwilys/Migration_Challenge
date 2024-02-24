@@ -61,6 +61,7 @@ function agendamentosMigration($agendamentosCsvData, $database) {
         //Converte a coluna cod_agendamento da tabela para o tipo Inteiro
         $cod_agendamento = intval($linhaTabelaAgendamentosFile[0]);
 
+        //Descrição do agendamento
         $descricao = $linhaTabelaAgendamentosFile[1];
 
         //Data e hora de início da consulta
@@ -84,11 +85,14 @@ function agendamentosMigration($agendamentosCsvData, $database) {
         //Vincular os parâmetros da consulta
         mysqli_stmt_bind_param($stmt, "sssssss", $paciente, $profissionais, $dh_inicio, $dh_fim, $convenio, $procedimentos, $descricao);
 
+        //Verifica se houve erros na declaração SQL
         if (!mysqli_stmt_execute($stmt)) {
           die("Falha ao executar a declaração SQL: " . mysqli_stmt_error($stmt));
         }
       }
+
       // Fechar a declaração
+      echo("Declaração SQL executada com sucesso\n\n");
       mysqli_stmt_close($stmt);
     }
 
@@ -109,14 +113,18 @@ function pacientesMigration($pacientesCsvData, $database) {
     mysqli_set_charset($database, "utf8");
 
     //SQL para inserção dos dados
-    $sql = "INSERT INTO pacientes (nome, sexo, nascimento, cpf, rg, id_convenio) VALUES (
+    $sql = "INSERT INTO pacientes (nome, sexo, nascimento, cpf, rg, id_convenio, cod_referencia) VALUES (
       ?,
       ?,
       ?,
       ?,
       ?,
-      (SELECT id FROM convenios WHERE nome LIKE ?)
+      (SELECT id FROM convenios WHERE nome LIKE ?),
+      ?
     )";
+
+    $sqlCheck = "SELECT COUNT(*) FROM pacientes WHERE cpf LIKE ?";
+    $stmtCheck = mysqli_prepare($database, $sqlCheck);
 
     //Preparação da declaração SQL
     $stmt = mysqli_prepare($database, $sql);
@@ -128,6 +136,9 @@ function pacientesMigration($pacientesCsvData, $database) {
 
       $linhaTabelaPacientesFile = array_map('stripslashes', $linhaTabelaPacientesFile);
       $linhaTabelaPacientesFile = array_map('trim', $linhaTabelaPacientesFile);
+
+      //Código referência
+      $cod_referencia = intval($linhaTabelaPacientesFile[0]);
 
       //Coluna de nome
       $nome_paciente = $linhaTabelaPacientesFile[1]; 
@@ -147,15 +158,27 @@ function pacientesMigration($pacientesCsvData, $database) {
       //Coluna de código do convenio
       $id_conv = '%' . $linhaTabelaPacientesFile[9] . '%'; 
 
-      //Vincular os parâmetros da consulta
-      mysqli_stmt_bind_param($stmt, 'ssssss', $nome_paciente, $sexo_pac, $nasc_paciente, $cpf_paciente, $rg_paciente, $id_conv);
+      //Verificar se o paciente já existe
+      mysqli_stmt_bind_param($stmtCheck, "s", $cpf_paciente);
+      mysqli_stmt_execute($stmtCheck);
+      mysqli_stmt_store_result($stmtCheck);
+      mysqli_stmt_bind_result($stmtCheck, $count);
+      mysqli_stmt_fetch($stmtCheck);
 
-      if (!mysqli_stmt_execute($stmt)) {
-        die("Falha ao executar a declaração SQL: " . mysqli_stmt_error($stmt));
+
+      if ($count == 0) {
+        mysqli_stmt_bind_param($stmt, 'ssssssi', $nome_paciente, $sexo_pac, $nasc_paciente, $cpf_paciente, $rg_paciente, $id_conv, $cod_referencia);
+        if (!mysqli_stmt_execute($stmt)) {
+          die("Falha ao executar a declaração SQL: " . mysqli_stmt_error($stmt));
+        }
+      } else {
+        echo "Paciente com o CPF '$cpf_paciente' já existe. Ignorando inserção.\n";
       }
     }
     // Fechar a declaração
+    echo("Declaração SQL executada com sucesso\n\n");
     mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmtCheck);
   }
 
 }

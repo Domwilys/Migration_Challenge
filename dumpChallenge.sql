@@ -40,7 +40,7 @@ CREATE TABLE `agendamentos` (
   CONSTRAINT `agendamento_id_paciente` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `agendamento_id_procedimento` FOREIGN KEY (`id_procedimento`) REFERENCES `procedimentos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `agendamento_id_profissional` FOREIGN KEY (`id_profissional`) REFERENCES `profissionais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=581 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,25 +53,25 @@ INSERT INTO `agendamentos` VALUES
 (1,1,85217,'2021-05-12 11:15:00','2021-05-12 11:30:00',1,1,'Primeira consulta do paciente.'),
 (2,1,85217,'2021-05-14 08:00:00','2021-05-14 08:30:00',1,2,'Retorno do paciente.'),
 (3,10276,85218,'2021-06-01 14:30:00','2021-06-01 14:45:00',4,3,'Acompanhamento de rotina.'),
-(270,10412,85218,'2021-02-01 08:30:00','2021-02-01 08:45:00',NULL,1,'primeira consulta do paciente'),
-(271,10416,85217,'2021-02-01 08:30:00','2021-02-01 09:45:00',NULL,1,'100'),
-(272,10413,85218,'2021-02-01 14:00:00','2021-02-01 10:45:00',1,1,'não cobrar'),
-(273,10418,85218,'2021-02-03 17:15:00','2021-02-03 11:45:00',1,1,''),
-(274,10417,85217,'2021-02-04 13:30:00','2021-02-04 12:45:00',NULL,1,'paciente com dores fortes'),
-(275,10419,85217,'2021-02-12 14:20:00','2021-02-12 13:45:00',NULL,1,'parente do Dr. Lucas'),
-(276,10413,85218,'2021-02-12 14:25:00','2021-02-12 14:45:00',1,1,'xxx'),
-(277,10414,85217,'2021-03-07 15:00:00','2021-03-07 15:45:00',NULL,1,''),
-(278,10416,85218,'2021-03-08 10:15:00','2021-03-08 16:45:00',NULL,2,''),
-(279,10418,85217,'2021-03-21 09:10:00','2021-03-21 17:45:00',1,1,''),
-(280,10412,85217,'2021-03-22 11:00:00','2021-03-22 18:45:00',NULL,2,''),
-(281,10414,85218,'2021-03-22 11:10:00','2021-03-22 19:45:00',NULL,1,'paciente indicado pela filha do dr.'),
-(282,10416,85218,'2021-06-04 09:00:00','2021-06-04 20:45:00',NULL,1,''),
-(283,10415,85217,'2021-06-05 17:00:00','2021-06-05 21:45:00',NULL,1,'…'),
-(284,10415,85218,'2021-06-15 17:15:00','2021-06-15 22:45:00',NULL,3,''),
-(285,10417,85218,'2021-06-28 11:00:00','2021-06-28 23:45:00',NULL,2,'X-x-x-x'),
-(286,10420,85218,'2021-08-06 08:30:00','2021-08-06 00:45:00',NULL,1,''),
-(287,10412,85217,'2021-08-16 10:15:00','2021-08-16 01:45:00',NULL,3,'dores de cabeça muito fortes'),
-(288,10419,85217,'2021-08-19 08:30:00','2021-08-19 02:45:00',NULL,1,'queixa de dor na coluna');
+(562,10574,85218,'2021-02-01 08:30:00','2021-02-01 08:45:00',NULL,1,'primeira consulta do paciente'),
+(563,10578,85217,'2021-02-01 08:30:00','2021-02-01 09:45:00',NULL,1,'100'),
+(564,10575,85218,'2021-02-01 14:00:00','2021-02-01 10:45:00',1,1,'não cobrar'),
+(565,10580,85218,'2021-02-03 17:15:00','2021-02-03 11:45:00',1,1,''),
+(566,10579,85217,'2021-02-04 13:30:00','2021-02-04 12:45:00',NULL,1,'paciente com dores fortes'),
+(567,10581,85217,'2021-02-12 14:20:00','2021-02-12 13:45:00',NULL,1,'parente do Dr. Lucas'),
+(568,10575,85218,'2021-02-12 14:25:00','2021-02-12 14:45:00',1,1,'xxx'),
+(569,10576,85217,'2021-03-07 15:00:00','2021-03-07 15:45:00',NULL,1,''),
+(570,10578,85218,'2021-03-08 10:15:00','2021-03-08 16:45:00',NULL,2,''),
+(571,10580,85217,'2021-03-21 09:10:00','2021-03-21 17:45:00',1,1,''),
+(572,10574,85217,'2021-03-22 11:00:00','2021-03-22 18:45:00',NULL,2,''),
+(573,10576,85218,'2021-03-22 11:10:00','2021-03-22 19:45:00',NULL,1,'paciente indicado pela filha do dr.'),
+(574,10578,85218,'2021-06-04 09:00:00','2021-06-04 20:45:00',NULL,1,''),
+(575,10577,85217,'2021-06-05 17:00:00','2021-06-05 21:45:00',NULL,1,'…'),
+(576,10577,85218,'2021-06-15 17:15:00','2021-06-15 22:45:00',NULL,3,''),
+(577,10579,85218,'2021-06-28 11:00:00','2021-06-28 23:45:00',NULL,2,'X-x-x-x'),
+(578,10582,85218,'2021-08-06 08:30:00','2021-08-06 00:45:00',NULL,1,''),
+(579,10574,85217,'2021-08-16 10:15:00','2021-08-16 01:45:00',NULL,3,'dores de cabeça muito fortes'),
+(580,10581,85217,'2021-08-19 08:30:00','2021-08-19 02:45:00',NULL,1,'queixa de dor na coluna');
 /*!40000 ALTER TABLE `agendamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `convenios` (
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `pacientes` (
   PRIMARY KEY (`id`),
   KEY `paciente_id_convenio_idx` (`id_convenio`),
   CONSTRAINT `paciente_id_convenio` FOREIGN KEY (`id_convenio`) REFERENCES `convenios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10421 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10592 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,15 +135,15 @@ INSERT INTO `pacientes` VALUES
 (1,'Paciente de Testes','Masculino','1989-05-12','000.000.000-00','00000-0',1,NULL),
 (10272,'Fulano de Tal','Masculino','1974-06-19','111.111.111-22','11111-2',1,NULL),
 (10276,'Ciclano de Tal','Masculino','2001-12-25','222.222.222-33','22222-3',4,NULL),
-(10412,'Rúben Rebelo César','Masculino','1990-05-02','908.394.690-80','27.046.463-3',NULL,NULL),
-(10413,'Lázaro Goulart Camarinho','Masculino','1983-06-04','095.805.480-05','25.903.805-2',1,NULL),
-(10414,'Gabrielly Sesimbra Candeias','Feminino','1967-12-12','207.182.310-90','41.845.430-9',NULL,NULL),
-(10415,'Hernâni Fidalgo Brito','Masculino','1975-10-14','307.522.380-86','42.896.829-6',NULL,NULL),
-(10416,'Isaac Severiano Nunes','Masculino','1966-04-15','007.217.650-41','49.040.121-1',NULL,NULL),
-(10417,'Amélie Azenha Fontoura','Feminino','1982-02-17','610.800.760-50','26.659.290-9',NULL,NULL),
-(10418,'Joel Medina Covilhã','Masculino','1956-10-22','468.052.020-51','13.060.699-6',1,NULL),
-(10419,'Lorenzo Milheirão Remígio','Masculino','1972-09-29','247.294.840-96','45.056.413-7',NULL,NULL),
-(10420,'Gabriella Fialho Feijó','Feminino','1988-07-16','454.421.590-00','42.395.070-8',NULL,NULL);
+(10574,'Rúben Rebelo César','Masculino','1990-05-02','908.394.690-80','27.046.463-3',NULL,'10268'),
+(10575,'Lázaro Goulart Camarinho','Masculino','1983-06-04','095.805.480-05','25.903.805-2',1,'10269'),
+(10576,'Gabrielly Sesimbra Candeias','Feminino','1967-12-12','207.182.310-90','41.845.430-9',NULL,'10270'),
+(10577,'Hernâni Fidalgo Brito','Masculino','1975-10-14','307.522.380-86','42.896.829-6',NULL,'10271'),
+(10578,'Isaac Severiano Nunes','Masculino','1966-04-15','007.217.650-41','49.040.121-1',NULL,'10272'),
+(10579,'Amélie Azenha Fontoura','Feminino','1982-02-17','610.800.760-50','26.659.290-9',NULL,'10274'),
+(10580,'Joel Medina Covilhã','Masculino','1956-10-22','468.052.020-51','13.060.699-6',1,'10275'),
+(10581,'Lorenzo Milheirão Remígio','Masculino','1972-09-29','247.294.840-96','45.056.413-7',NULL,'10276'),
+(10582,'Gabriella Fialho Feijó','Feminino','1988-07-16','454.421.590-00','42.395.070-8',NULL,'10277');
 /*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,4 +212,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-24  1:50:25
+-- Dump completed on 2024-02-24 19:28:47
