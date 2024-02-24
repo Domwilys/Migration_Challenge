@@ -19,7 +19,7 @@ services:
 
     # MySql database
     db:
-        image: mysql:5.7.22
+        image: mariadb:latest
         restart: unless-stopped
         environment:
             MYSQL_DATABASE: ${DB_DATABASE:-migration_challenge}

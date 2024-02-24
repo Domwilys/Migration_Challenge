@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     libzip-dev \
+    mariadb-client \
     && docker-php-ext-install mysqli pdo_mysql
 
 # Clear cache

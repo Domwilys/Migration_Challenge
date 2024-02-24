@@ -18,8 +18,8 @@ $connMedical = mysqli_connect("db", "root", "root", "MedicalChallenge")
   or die("Não foi possível conectar os servidor MySQL: MedicalChallenge\n");
 
 // Conexão com o banco temporário:
-$connTemp = mysqli_connect("mariadb", "root", "root", "MedicalChallenge")
-  or die("Não foi possível conectar os servidor MySQL: temporary_database\n");
+// $connTemp = mysqli_connect("mariadb", "root", "root", "MedicalChallenge")
+//   or die("Não foi possível conectar os servidor MySQL: temporary_database\n");
 
 // Informações de Inicio da Migração:
 echo "Início da Migração: " . dateNow() . ".\n\n";
@@ -42,13 +42,17 @@ pacientesMigration($pacientesCsvData, $connMedical);
 //Migração dos dados de agendamento
 agendamentosMigration($agendamentosCsvData, $connMedical);
 
+$dumpFilePath = 'migration-challenge-main\dumpChallenge.sql';
+$dumpCommand = "mysqldump -uroot -proot -h db MedicalChallenge > $dumpFilePath";
+exec($dumpCommand);
+
 //Fecha os arquivos CSV
 fclose($agendamentosCsvData);
 fclose($pacientesCsvData);
 
 // Encerrando as conexões:
 $connMedical->close();
-$connTemp->close();
+// $connTemp->close();
 
 // Informações de Fim da Migração:
 echo "Fim da Migração: " . dateNow() . ".\n";
