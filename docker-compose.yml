@@ -22,7 +22,6 @@ services:
         image: mariadb:latest
         restart: unless-stopped
         environment:
-            MYSQL_DATABASE: ${DB_DATABASE:-migration_challenge}
             MYSQL_ROOT_PASSWORD: ${DB_MYSQL_PASSWORD:-root}
             MYSQL_PASSWORD: ${DB_MYSQL_PASSWORD:-userpass}
             MYSQL_USER: ${DB_MYSQL_USERNAME:-username}

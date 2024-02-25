@@ -40,9 +40,9 @@ $pacientesCsvData = fopen($pacientesCsvFilePath, "r");
 pacientesMigration($pacientesCsvData, $connMedical);
 
 //Migração dos dados de agendamento
-// agendamentosMigration($agendamentosCsvData, $connMedical);
+agendamentosMigration($agendamentosCsvData, $connMedical);
 
-$dumpFilePath = 'dumpChallenge.sql';
+$dumpFilePath = 'medicalChallenge.sql';
 $dumpCommand = "mysqldump -uroot -proot -h db MedicalChallenge > $dumpFilePath";
 exec($dumpCommand);
 
