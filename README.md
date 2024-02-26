@@ -1,6 +1,7 @@
 Para executar o projeto é necessário ter o Docker (optei por essa estratégia para as dependências e arquivos do projeto não conflitarem com arquivos ou aplicativos da máquina em que está sendo executado)
 
 Primeiramente é necessário criar um arquivo .env utilizando o .env.example como modelo
+
 OBS: Coloquei aqui no GitHub o .env que utilizei no projeto
 
 ```dosini
