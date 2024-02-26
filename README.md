@@ -9,7 +9,7 @@ OBS: Coloquei aqui no GitHub o .env que utilizei no projeto
 DB_CONNECTION='Database used'
 DB_HOST='Database host'
 DB_PORT='Database port'
-DB_DATABASE='Database name'
+DB_DATABASE='Database name' (Opcional)
 DB_USERNAME='Username'
 DB_PASSWORD='User password'
 
