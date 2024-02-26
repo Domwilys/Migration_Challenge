@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `MedicalChallenge`.`pacientes` (
   `id_convenio` INT NULL,
   `cod_referencia` VARCHAR(50) NULL,
   PRIMARY KEY (`id`),
-  INDEX `paciente_id_convenio_idx` (`id_convenio` ASC) VISIBLE,
+  INDEX `paciente_id_convenio_idx` (`id_convenio` ASC),
   CONSTRAINT `paciente_id_convenio`
     FOREIGN KEY (`id_convenio`)
     REFERENCES `MedicalChallenge`.`convenios` (`id`)
@@ -95,10 +95,10 @@ CREATE TABLE IF NOT EXISTS `MedicalChallenge`.`agendamentos` (
   `id_procedimento` INT NULL,
   `observacoes` TEXT NULL,
   PRIMARY KEY (`id`),
-  INDEX `agendamento_id_convenio_idx` (`id_convenio` ASC) VISIBLE,
-  INDEX `agendamento_id_procedimento_idx` (`id_procedimento` ASC) VISIBLE,
-  INDEX `agendamento_id_profissional_idx` (`id_profissional` ASC) VISIBLE,
-  INDEX `agendamento_id_paciente_idx` (`id_paciente` ASC) VISIBLE,
+  INDEX `agendamento_id_convenio_idx` (`id_convenio` ASC),
+  INDEX `agendamento_id_procedimento_idx` (`id_procedimento` ASC),
+  INDEX `agendamento_id_profissional_idx` (`id_profissional` ASC),
+  INDEX `agendamento_id_paciente_idx` (`id_paciente` ASC),
   CONSTRAINT `agendamento_id_convenio`
     FOREIGN KEY (`id_convenio`)
     REFERENCES `MedicalChallenge`.`convenios` (`id`)
